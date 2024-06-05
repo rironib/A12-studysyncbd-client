@@ -6,12 +6,15 @@ import {
     InputGroup,
     InputLeftElement,
     InputRightElement,
-    Stack
+    Stack, Select
 } from "@chakra-ui/react";
 import {useForm} from "react-hook-form";
-import {useState} from "react";
-import {RiImageFill, RiKeyFill, RiMailFill, RiUser6Fill} from "react-icons/ri";
-import {Link} from "react-router-dom";
+import {useContext, useState} from "react";
+import {RiKeyFill, RiMailFill, RiUser6Fill} from "react-icons/ri";
+import {Link, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../../providers/AuthProvider.jsx";
+import {toast} from "react-toastify";
+import {axiosPublic} from "../../../hooks/useAxiosPublic.jsx";
 
 const Register = () => {
     const [show, setShow] = useState(false);
@@ -19,11 +22,34 @@ const Register = () => {
         setShow(!show);
     }
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset} = useForm();
+    const { createUser, updateUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-        console.log(data);
-    }
+        try {
+            await createUser(data.email, data.password);
+            await updateUser(data.name, data.photoURL);
+
+            const userInfo = {
+                name: data.name,
+                email: data.email.toLowerCase(),
+                role: data.role,
+                createAt: new Date().toISOString()
+            };
+
+            const res = await axiosPublic.post('/api/users/add', userInfo);
+            if (res.data._id) {
+                reset();
+                toast.success("Registration successful!!");
+                navigate('/');
+            } else {
+                toast.error(res.data.message);
+            }
+        } catch (err) {
+            toast.error(err.message);
+        }
+    };
 
     return (
         <main className='min-h-screen w-full bg-emerald-950 flex justify-center items-center'>
@@ -38,12 +64,11 @@ const Register = () => {
                             <Input type='text' {...register("name", {required: true})} placeholder='Your Name' />
                         </InputGroup>
 
-                        <InputGroup size='lg'>
-                            <InputLeftElement color='gray.400' pointerEvents='none'>
-                                <RiImageFill />
-                            </InputLeftElement>
-                            <Input type='text' {...register("photo", {required: true})} placeholder='Profile photo link' />
-                        </InputGroup>
+                        <Select {...register("role", {required: true})} size='lg' placeholder='Sign up as'>
+                            <option value='admin'>Admin</option>
+                            <option value='tutor'>Tutor</option>
+                            <option value='student'>Student</option>
+                        </Select>
 
                         <InputGroup size='lg'>
                             <InputLeftElement color='gray.400' pointerEvents='none'>
@@ -73,7 +98,7 @@ const Register = () => {
                         </Button>
                     </Stack>
                     <Text align='center'>
-                        Already have an account? <Link className='text-blue-700' to='/login'>Login</Link>
+                        Already have an account? <Link className='font-medium text-teal-500' to='/login'>Login</Link>
                     </Text>
                 </form>
             </div>
