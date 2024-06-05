@@ -1,5 +1,6 @@
 import {Button, Divider, Heading, Stack, Text} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
+import {RiFacebookFill, RiLinkedinFill, RiTwitterFill, RiYoutubeFill} from "react-icons/ri";
 
 const Footer = () => {
     const year = new Date().getFullYear();
@@ -28,17 +29,17 @@ const Footer = () => {
                         <div className='space-y-4'>
                             <Text fontSize='lg'>Follow Us On:</Text>
                             <Stack direction='row' spacing={4} align='center'>
-                                <Button colorScheme='teal' variant='solid'>
-                                    X
+                                <Button bg='#1877F2' color='white' _hover={{}}>
+                                    <RiFacebookFill />
                                 </Button>
-                                <Button colorScheme='teal' variant='solid'>
-                                    X
+                                <Button bg='#1DA1F2' color='white' _hover={{}}>
+                                    <RiTwitterFill/>
                                 </Button>
-                                <Button colorScheme='teal' variant='solid'>
-                                    X
+                                <Button bg='#0077B5' color='white' _hover={{}}>
+                                    <RiLinkedinFill/>
                                 </Button>
-                                <Button colorScheme='teal' variant='solid'>
-                                    X
+                                <Button bg='#FF0000' color='white' _hover={{}}>
+                                    <RiYoutubeFill/>
                                 </Button>
                             </Stack>
                         </div>
