@@ -17,6 +17,13 @@ import StudentSessions from "../pages/Private/Student/StudentSessions/StudentSes
 import StudentCreateNote from "../pages/Private/Student/StudentCreateNote/StudentCreateNote.jsx";
 import StudentManageNote from "../pages/Private/Student/StudentManageNote/StudentManageNote.jsx";
 import StudentMaterials from "../pages/Private/Student/StudentMaterials/StudentMaterials.jsx";
+import TutorLayout from "../layouts/TutorLayout.jsx";
+import TutorHome from "../pages/Tutor/Home/Home.jsx";
+import TutorCreateSessions from "../pages/Tutor/CreateSessions/TutorSessions.jsx";
+import TutorSessions from "../pages/Tutor/Sessions/Sessions.jsx";
+import TutorAddMaterials from "../pages/Tutor/AddMaterials/AddMaterials.jsx";
+import TutorMaterials from "../pages/Tutor/Materials/Materials.jsx";
+import TutorNotes from "../pages/Tutor/Notes/Notes.jsx";
 
 const router = createBrowserRouter([
     {
@@ -46,28 +53,60 @@ const router = createBrowserRouter([
 
             // Student Routes
             {
-                path: '/dashboard',
+                path: '/student',
                 element: <StudentLayout/>,
                 children: [
                     {
-                        path: '/dashboard/home',
+                        path: '/student/home',
                         element: <StudentHome/>,
                     },
                     {
-                        path: '/dashboard/sessions',
+                        path: '/student/sessions',
                         element: <StudentSessions/>,
                     },
                     {
-                        path: '/dashboard/create-note',
+                        path: '/student/create-note',
                         element: <StudentCreateNote/>,
                     },
                     {
-                        path: '/dashboard/manage-note',
+                        path: '/student/manage-note',
                         element: <StudentManageNote/>,
                     },
                     {
-                        path: '/dashboard/study-materials',
+                        path: '/student/study-materials',
                         element: <StudentMaterials/>,
+                    },
+                ]
+            },
+
+            // Tutor Routes
+            {
+                path: '/tutor',
+                element: <TutorLayout/>,
+                children: [
+                    {
+                        path: '/tutor/home',
+                        element: <TutorHome/>,
+                    },
+                    {
+                        path: '/tutor/create-sessions',
+                        element: <TutorCreateSessions/>,
+                    },
+                    {
+                        path: '/tutor/sessions',
+                        element: <TutorSessions/>,
+                    },
+                    {
+                        path: '/tutor/add-materials',
+                        element: <TutorAddMaterials/>,
+                    },
+                    {
+                        path: '/tutor/materials',
+                        element: <TutorMaterials/>,
+                    },
+                    {
+                        path: '/tutor/notes',
+                        element: <TutorNotes/>,
                     },
                 ]
             },
