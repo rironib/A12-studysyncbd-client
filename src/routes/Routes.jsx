@@ -11,6 +11,12 @@ import PrivateLayout from "../layouts/PrivateLayout.jsx";
 import PrivateHome from "../pages/Private/PrivateHome/PrivateHome.jsx";
 import AdminHome from "../pages/Admin/AdminHome/AdminHome.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
+import StudentLayout from "../layouts/StudentLayout.jsx";
+import StudentHome from "../pages/Private/Student/StudentHome/StudentHome.jsx";
+import StudentSessions from "../pages/Private/Student/StudentSessions/StudentSessions.jsx";
+import StudentCreateNote from "../pages/Private/Student/StudentCreateNote/StudentCreateNote.jsx";
+import StudentManageNote from "../pages/Private/Student/StudentManageNote/StudentManageNote.jsx";
+import StudentMaterials from "../pages/Private/Student/StudentMaterials/StudentMaterials.jsx";
 
 const router = createBrowserRouter([
     {
@@ -38,15 +44,31 @@ const router = createBrowserRouter([
                 ]
             },
 
-            // Private Routes
+            // Student Routes
             {
                 path: '/dashboard',
-                element: <PrivateLayout/>,
+                element: <StudentLayout/>,
                 children: [
                     {
-                        path: '/dashboard',
-                        element: <PrivateHome/>,
-                    }
+                        path: '/dashboard/home',
+                        element: <StudentHome/>,
+                    },
+                    {
+                        path: '/dashboard/sessions',
+                        element: <StudentSessions/>,
+                    },
+                    {
+                        path: '/dashboard/create-note',
+                        element: <StudentCreateNote/>,
+                    },
+                    {
+                        path: '/dashboard/manage-note',
+                        element: <StudentManageNote/>,
+                    },
+                    {
+                        path: '/dashboard/study-materials',
+                        element: <StudentMaterials/>,
+                    },
                 ]
             },
 
