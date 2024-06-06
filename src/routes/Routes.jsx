@@ -12,11 +12,11 @@ import SessionList from "../pages/Public/SessionList/SessionList.jsx";
 
 // Student Dashboard
 import StudentLayout from "../layouts/StudentLayout.jsx";
-import StudentHome from "../pages/Private/Student/StudentHome/StudentHome.jsx";
-import StudentSessions from "../pages/Private/Student/StudentSessions/StudentSessions.jsx";
-import StudentCreateNote from "../pages/Private/Student/StudentCreateNote/StudentCreateNote.jsx";
-import StudentManageNote from "../pages/Private/Student/StudentManageNote/StudentManageNote.jsx";
-import StudentMaterials from "../pages/Private/Student/StudentMaterials/StudentMaterials.jsx";
+import StudentHome from "../pages/Student/Home/Home.jsx";
+import StudentSessions from "../pages/Student/Sessions/Sessions.jsx";
+import StudentCreateNote from "../pages/Student/CreateNote/StudentCreateNote.jsx";
+import StudentManageNotes from "../pages/Student/ManageNotes/ManageNotes.jsx";
+import StudentMaterials from "../pages/Student/Materials/Materials.jsx";
 
 // Tutor Dashboard
 import TutorLayout from "../layouts/TutorLayout.jsx";
@@ -33,7 +33,6 @@ import AdminHome from "../pages/Admin/Home/Home.jsx";
 import AdminUsers from "../pages/Admin/Users/Users.jsx";
 import AdminSessions from "../pages/Admin/Sessions/Sessions.jsx";
 import AdminMaterials from "../pages/Admin/Materials/Materials.jsx";
-
 
 const router = createBrowserRouter([
     {
@@ -67,7 +66,7 @@ const router = createBrowserRouter([
                 element: <StudentLayout/>,
                 children: [
                     {
-                        path: '/student/home',
+                        path: '/student/dashboard',
                         element: <StudentHome/>,
                     },
                     {
@@ -80,7 +79,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/student/manage-note',
-                        element: <StudentManageNote/>,
+                        element: <StudentManageNotes/>,
                     },
                     {
                         path: '/student/study-materials',
@@ -95,7 +94,7 @@ const router = createBrowserRouter([
                 element: <TutorLayout/>,
                 children: [
                     {
-                        path: '/tutor/home',
+                        path: '/tutor/dashboard',
                         element: <TutorHome/>,
                     },
                     {
@@ -127,7 +126,7 @@ const router = createBrowserRouter([
                 element: <AdminLayout/>,
                 children: [
                     {
-                        path: '/admin/home',
+                        path: '/admin/dashboard',
                         element: <AdminHome/>
                     },
                     {

@@ -37,7 +37,7 @@ const Header = () => {
                                     variant='outline'
                                 />
                                 <MenuList>
-                                    <MenuItem onClick={() => navigate('/tutor/home')} icon={<AtSignIcon />}>
+                                    <MenuItem onClick={() => navigate('/tutor/dashboard')} icon={<AtSignIcon />}>
                                         Dashboard
                                     </MenuItem>
                                     <MenuItem onClick={() => navigate('/tutor/create-sessions')} icon={<CalendarIcon />}>
@@ -63,7 +63,7 @@ const Header = () => {
                         </Link>
                     </div>
                     <div className='hidden lg:flex gap-4 font-semibold'>
-                        <NavLink to='/tutor/home'>Dashboard</NavLink>
+                        <NavLink to='/tutor/dashboard'>Dashboard</NavLink>
                         <NavLink to='/tutor/create-sessions'>Create Sessions</NavLink>
                         <NavLink to='/tutor/sessions'>Sessions</NavLink>
                         <NavLink to='/tutor/add-materials'>Add Materials</NavLink>

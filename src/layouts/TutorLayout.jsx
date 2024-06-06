@@ -6,7 +6,7 @@ const TutorLayout = () => {
     const navigate = useNavigate();
 
     if (isAdmin) {
-        navigate('/admin');
+        navigate('/admin/home');
     }
 
     return (

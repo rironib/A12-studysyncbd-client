@@ -37,23 +37,17 @@ const Header = () => {
                                     variant='outline'
                                 />
                                 <MenuList>
-                                    <MenuItem onClick={() => navigate('/tutor/home')} icon={<AtSignIcon />}>
+                                    <MenuItem onClick={() => navigate('/admin/dashboard')} icon={<AtSignIcon />}>
                                         Dashboard
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/tutor/create-sessions')} icon={<CalendarIcon />}>
-                                        Create Sessions
+                                    <MenuItem onClick={() => navigate('/admin/users')} icon={<CalendarIcon />}>
+                                        Users
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/tutor/sessions')} icon={<AddIcon />}>
+                                    <MenuItem onClick={() => navigate('/admin/sessions')} icon={<AddIcon />}>
                                         Sessions
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/tutor/add-materials')} icon={<EditIcon />}>
-                                        Add Materials
-                                    </MenuItem>
-                                    <MenuItem onClick={() => navigate('/tutor/materials')} icon={<AttachmentIcon />}>
+                                    <MenuItem onClick={() => navigate('/admin/materials')} icon={<AttachmentIcon />}>
                                         Materials
-                                    </MenuItem>
-                                    <MenuItem onClick={() => navigate('/tutor/notes')} icon={<ChatIcon />}>
-                                        Notes
                                     </MenuItem>
                                 </MenuList>
                             </Menu>
@@ -63,7 +57,7 @@ const Header = () => {
                         </Link>
                     </div>
                     <div className='hidden lg:flex gap-4 font-semibold'>
-                        <NavLink to='/admin/home'>Dashboard</NavLink>
+                        <NavLink to='/admin/dashboard'>Dashboard</NavLink>
                         <NavLink to='/admin/users'>Users</NavLink>
                         <NavLink to='/admin/sessions'>Sessions</NavLink>
                         <NavLink to='/admin/materials'>Materials</NavLink>

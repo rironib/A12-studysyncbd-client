@@ -1,12 +1,10 @@
-import {Avatar, Button, Heading, IconButton, Menu, MenuButton, MenuItem, MenuList, Stack} from "@chakra-ui/react";
+import {Heading, IconButton, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {
     AddIcon,
     AtSignIcon,
     AttachmentIcon, CalendarIcon,
     EditIcon,
-    ExternalLinkIcon,
     HamburgerIcon,
-    RepeatIcon
 } from "@chakra-ui/icons";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import useAuth from "../../hooks/useAuth.jsx";
@@ -39,19 +37,19 @@ const Header = () => {
                                     variant='outline'
                                 />
                                 <MenuList>
-                                    <MenuItem onClick={() => navigate('/dashboard/home')} icon={<AtSignIcon />}>
+                                    <MenuItem onClick={() => navigate('/student/dashboard')} icon={<AtSignIcon />}>
                                         Dashboard
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/dashboard/sessions')} icon={<CalendarIcon />}>
+                                    <MenuItem onClick={() => navigate('/student/sessions')} icon={<CalendarIcon />}>
                                         Sessions
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/dashboard/create-note')} icon={<AddIcon />}>
+                                    <MenuItem onClick={() => navigate('/student/create-note')} icon={<AddIcon />}>
                                         Create Note
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/dashboard/manage-note')} icon={<EditIcon />}>
+                                    <MenuItem onClick={() => navigate('/student/manage-note')} icon={<EditIcon />}>
                                         Manage Notes
                                     </MenuItem>
-                                    <MenuItem onClick={() => navigate('/dashboard/study-materials')} icon={<AttachmentIcon />}>
+                                    <MenuItem onClick={() => navigate('/student/study-materials')} icon={<AttachmentIcon />}>
                                         Study Materials
                                     </MenuItem>
                                 </MenuList>
@@ -62,11 +60,11 @@ const Header = () => {
                         </Link>
                     </div>
                     <div className='hidden lg:flex gap-4 font-semibold'>
-                        <NavLink to='/dashboard/home'>Dashboard</NavLink>
-                        <NavLink to='/dashboard/sessions'>Sessions</NavLink>
-                        <NavLink to='/dashboard/create-note'>Create Note</NavLink>
-                        <NavLink to='/dashboard/manage-note'>Manage Notes</NavLink>
-                        <NavLink to='/dashboard/study-materials'>Study Materials</NavLink>
+                        <NavLink to='/student/dashboard'>Dashboard</NavLink>
+                        <NavLink to='/student/sessions'>Sessions</NavLink>
+                        <NavLink to='/student/create-note'>Create Note</NavLink>
+                        <NavLink to='/student/manage-note'>Manage Notes</NavLink>
+                        <NavLink to='/student/study-materials'>Study Materials</NavLink>
                     </div>
                     <div className='flex items-center gap-4'>
                         <img src={user?.photoURL} alt={user?.displayName} className='w-10 lg:w-12 h-10 lg:h-12 rounded-full' />

@@ -5,8 +5,8 @@ import {RiArticleLine, RiTimeLine, RiUser3Line} from "react-icons/ri";
 import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 import {axiosPublic} from "../../../hooks/useAxiosPublic.jsx";
-import Loading from "../../../components/Loading.jsx";
-import ErrorAlert from "../../../components/Alert/ErrorAlert.jsx";
+import ErrorAlert from "../../../components/Shared/ErrorAlert.jsx";
+import Loading from "../../../components/Shared/Loading.jsx";
 
 const SessionSection = () => {
     const {data: sessions = [], isLoading, error} = useQuery({

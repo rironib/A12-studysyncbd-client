@@ -1,12 +1,12 @@
 import {useQuery} from "@tanstack/react-query";
 import {axiosPublic} from "../../../hooks/useAxiosPublic.jsx";
-import Loading from "../../../components/Loading.jsx";
-import ErrorAlert from "../../../components/Alert/ErrorAlert.jsx";
+import ErrorAlert from "../../../components/Shared/ErrorAlert.jsx";
 import {Avatar, Box, Button, Divider, Flex, Grid, Heading, Stack, Text, WrapItem} from "@chakra-ui/react";
 import {Rating} from "@smastrom/react-rating";
 import {RiArticleLine, RiTimeLine, RiUser3Line} from "react-icons/ri";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
+import Loading from "../../../components/Shared/Loading.jsx";
 
 const SessionList = () => {
     const {data: sessions = [], isLoading, error} = useQuery({

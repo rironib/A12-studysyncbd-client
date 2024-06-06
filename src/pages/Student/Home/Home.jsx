@@ -1,5 +1,5 @@
-import useAuth from "../../../../hooks/useAuth.jsx";
 import {Helmet} from "react-helmet-async";
+import useAuth from "../../../hooks/useAuth.jsx";
 
 const StudentHome = () => {
     const {user} = useAuth();
