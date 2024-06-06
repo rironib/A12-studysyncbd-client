@@ -12,7 +12,7 @@ const StudentLayout = () => {
     return (
         <>
             <Header/>
-            <main className='w-11/12 lg:w-10/12 max-w-[1275px] mx-auto'>
+            <main className='w-11/12 lg:w-10/12 max-w-[1275px] mx-auto py-8'>
                 <Outlet/>
             </main>
         </>

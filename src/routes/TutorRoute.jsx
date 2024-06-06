@@ -1,12 +1,12 @@
-import useAuth from "../hooks/useAuth.jsx";
-import useAdmin from "../hooks/useAdmin.jsx";
 import {Navigate, useLocation} from "react-router-dom";
 import PropTypes from "prop-types";
+import useAuth from "../hooks/useAuth.jsx";
+import useAdmin from "../hooks/useAdmin.jsx";
 import Loading from "../components/Shared/Loading.jsx";
 import useTutor from "../hooks/useTutor.jsx";
 import useStudent from "../hooks/useStudent.jsx";
 
-const AdminRoute = ({children}) => {
+const TutorRoute = ({children}) => {
     const {user, loading} = useAuth();
     const location = useLocation();
     const [isAdmin, isAdminLoading] = useAdmin();
@@ -17,7 +17,7 @@ const AdminRoute = ({children}) => {
         return <Loading/>;
     }
 
-    if (user && isAdmin) {
+    if (user && isTutor) {
         return children;
     }
 
@@ -25,15 +25,15 @@ const AdminRoute = ({children}) => {
         return <Navigate to='/student/dashboard' state={{from: location}} replace />;
     }
 
-    if (isTutor) {
-        return <Navigate to='/tutor/dashboard' state={{from: location}} replace />;
+    if (isAdmin) {
+        return <Navigate to='/admin/dashboard' state={{from: location}} replace />
     }
 
     return <Navigate to="/login" state={{from: location}} replace />;
 };
 
-AdminRoute.propTypes = {
-    children: PropTypes.node.isRequired
+TutorRoute.propTypes = {
+    children: PropTypes.node.isRequired,
 }
 
-export default AdminRoute;
+export default TutorRoute;

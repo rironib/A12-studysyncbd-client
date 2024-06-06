@@ -19,6 +19,7 @@ import StudentManageNotes from "../pages/Student/ManageNotes/ManageNotes.jsx";
 import StudentMaterials from "../pages/Student/Materials/Materials.jsx";
 
 // Tutor Dashboard
+import TutorRoute from "./TutorRoute.jsx";
 import TutorLayout from "../layouts/TutorLayout.jsx";
 import TutorHome from "../pages/Tutor/Home/Home.jsx";
 import TutorCreateSessions from "../pages/Tutor/CreateSessions/TutorSessions.jsx";
@@ -33,6 +34,8 @@ import AdminHome from "../pages/Admin/Home/Home.jsx";
 import AdminUsers from "../pages/Admin/Users/Users.jsx";
 import AdminSessions from "../pages/Admin/Sessions/Sessions.jsx";
 import AdminMaterials from "../pages/Admin/Materials/Materials.jsx";
+import AdminRoute from "./AdminRoute.jsx";
+import StudentRoute from "./StudentRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -63,7 +66,7 @@ const router = createBrowserRouter([
             // Student Routes
             {
                 path: '/student',
-                element: <StudentLayout/>,
+                element: <StudentRoute><StudentLayout/></StudentRoute>,
                 children: [
                     {
                         path: '/student/dashboard',
@@ -91,7 +94,7 @@ const router = createBrowserRouter([
             // Tutor Routes
             {
                 path: '/tutor',
-                element: <TutorLayout/>,
+                element: <TutorRoute><TutorLayout/></TutorRoute>,
                 children: [
                     {
                         path: '/tutor/dashboard',
@@ -123,7 +126,7 @@ const router = createBrowserRouter([
             // Admin Routes
             {
                 path: '/admin',
-                element: <AdminLayout/>,
+                element: <AdminRoute><AdminLayout/></AdminRoute>,
                 children: [
                     {
                         path: '/admin/dashboard',
