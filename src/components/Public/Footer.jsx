@@ -1,4 +1,4 @@
-import {Button, Divider, Heading, Stack, Text} from "@chakra-ui/react";
+import {Button, Divider, Flex, Heading, Stack, Text} from "@chakra-ui/react";
 import {Link} from "react-router-dom";
 import {RiFacebookFill, RiLinkedinFill, RiTwitterFill, RiYoutubeFill} from "react-icons/ri";
 
@@ -6,29 +6,17 @@ const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <footer className='h-screen w-full bg-emerald-950 text-white'>
-            <div className='h-screen w-11/12 lg:w-10/12 max-w-[1275px] mx-auto pt-24 space-y-12 flex flex-col justify-between'>
-                <div>
-                    <div className='flex justify-between items-center py-8'>
-                        <Heading size='lg' className='w-[420px]'>
-                            Subscribe to Our Newsletter
-                            for Latest Update
-                        </Heading>
-                        <div className='min-w-[420px] flex justify-between bg-white p-2 rounded-full'>
-                            <input type='email' name='email' placeholder='Email Address'
-                                   className='w-full p-3 border-0 outline-none rounded-full'/>
-                            <button className='bg-emerald-500 p-3 px-6 rounded-full'>Subscribe</button>
-                        </div>
-                    </div>
-                </div>
-                <Divider/>
-                <div className='grid grid-cols-4 gap-4 flex-grow'>
-                    <div className='space-y-6'>
+        <footer className='w-full bg-emerald-950 text-white'>
+            <div className='w-11/12 lg:w-10/12 max-w-[1275px] mx-auto pt-24 space-y-12 flex flex-col justify-between mb-20'>
+                <div className='grid grid-cols-2 xl:grid-cols-4 gap-6 md:gap-x-12 gap-y-12 flex-grow'>
+                    <div className='col-span-2 md:col-span-1 text-center md:text-left space-y-6'>
                         <Heading>StudySync</Heading>
-                        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit varius congue Morbi</Text>
+                        <Text>
+                            Unlock learning potential with StudySync: your guide to academic excellence
+                        </Text>
                         <div className='space-y-4'>
                             <Text fontSize='lg'>Follow Us On:</Text>
-                            <Stack direction='row' spacing={4} align='center'>
+                            <Flex className='justify-center md:justify-start gap-4'>
                                 <Button bg='#1877F2' color='white' _hover={{}}>
                                     <RiFacebookFill />
                                 </Button>
@@ -41,10 +29,10 @@ const Footer = () => {
                                 <Button bg='#FF0000' color='white' _hover={{}}>
                                     <RiYoutubeFill/>
                                 </Button>
-                            </Stack>
+                            </Flex>
                         </div>
                     </div>
-                    <div className='space-y-6'>
+                    <div className='text-center md:text-left space-y-6'>
                         <Heading>
                             Useful Links
                         </Heading>
@@ -56,7 +44,7 @@ const Footer = () => {
                             <Link to='/'>Categories</Link>
                         </Stack>
                     </div>
-                    <div className='space-y-6'>
+                    <div className='text-center md:text-left space-y-6'>
                         <Heading>
                             Resources
                         </Heading>
@@ -68,7 +56,7 @@ const Footer = () => {
                             <Link to='/'>Terms</Link>
                         </Stack>
                     </div>
-                    <div className='space-y-6'>
+                    <div className='col-span-2 md:col-span-1 text-center md:text-left space-y-6'>
                         <Heading>
                             Contact Us
                         </Heading>

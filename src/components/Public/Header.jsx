@@ -1,4 +1,15 @@
-import {Avatar, Button, Heading, IconButton, Menu, MenuButton, MenuItem, MenuList, Stack} from "@chakra-ui/react";
+import {
+    Avatar,
+    Button,
+    Heading,
+    IconButton,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Stack,
+    useBreakpointValue
+} from "@chakra-ui/react";
 import {AddIcon, EditIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon} from "@chakra-ui/icons";
 import {Link, useNavigate} from "react-router-dom";
 import useAuth from "../../hooks/useAuth.jsx";
@@ -7,6 +18,7 @@ import {toast} from "react-toastify";
 const Header = () => {
     const {user, logOut} = useAuth();
     const navigate = useNavigate();
+    const breakpoint = useBreakpointValue({ base: 'sm', md: 'md' });
 
     const handleLogout = () => {
         logOut()
@@ -22,30 +34,6 @@ const Header = () => {
             <div className='w-11/12 lg:w-10/12 max-w-[1275px] mx-auto py-3'>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center gap-4'>
-                        <div className='lg:hidden'>
-                            <Menu>
-                                <MenuButton
-                                    as={IconButton}
-                                    aria-label='Options'
-                                    icon={<HamburgerIcon />}
-                                    variant='outline'
-                                />
-                                <MenuList>
-                                    <MenuItem icon={<AddIcon />} command='⌘T'>
-                                        New Tab
-                                    </MenuItem>
-                                    <MenuItem icon={<ExternalLinkIcon />} command='⌘N'>
-                                        New Window
-                                    </MenuItem>
-                                    <MenuItem icon={<RepeatIcon />} command='⌘⇧N'>
-                                        Open Closed Tab
-                                    </MenuItem>
-                                    <MenuItem icon={<EditIcon />} command='⌘O'>
-                                        Open File...
-                                    </MenuItem>
-                                </MenuList>
-                            </Menu>
-                        </div>
                         <Link to='/'>
                             <Heading as='h1' size='xl'>StudySync</Heading>
                         </Link>
@@ -55,21 +43,23 @@ const Header = () => {
                     </div>
                     {
                         user ? (
-                            <Stack direction='row' spacing={4} align='center'>
-                                <Avatar size='md' name={user?.displayName} src={user?.photoURL} />
-                                <Button onClick={() => navigate('/dashboard/home')} colorScheme='teal' variant='solid'>
+                            <div className='flex items-center gap-2 lg:gap-4'>
+                                <div className='hidden lg:block'>
+                                    <Avatar size={breakpoint} name={user?.displayName} src={user?.photoURL} />
+                                </div>
+                                <Button onClick={() => navigate('/student/dashboard')} colorScheme='teal' size={breakpoint}>
                                     Dashboard
                                 </Button>
-                                <Button onClick={handleLogout} colorScheme='teal' variant='outline'>
+                                <Button onClick={handleLogout} size={breakpoint} colorScheme='teal' variant='outline'>
                                     Logout
                                 </Button>
-                            </Stack>
+                            </div>
                         ) : (
                             <Stack direction='row' spacing={4} align='center'>
-                                <Button onClick={() => navigate('/login')} colorScheme='teal' variant='solid'>
+                                <Button onClick={() => navigate('/login')} size={breakpoint} colorScheme='teal' variant='solid'>
                                     Login
                                 </Button>
-                                <Button onClick={() => navigate('/register')} colorScheme='teal' variant='outline'>
+                                <Button onClick={() => navigate('/register')} size={breakpoint} colorScheme='teal' variant='outline'>
                                     Sign up
                                 </Button>
                             </Stack>

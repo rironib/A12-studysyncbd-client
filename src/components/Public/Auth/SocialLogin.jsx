@@ -5,7 +5,7 @@ import {toast} from "react-toastify";
 import {Button, Stack} from "@chakra-ui/react";
 
 const SocialLogin = () => {
-    const {signInWithGoogle} = useAuth();
+    const {signInWithGoogle, signInWithGithub} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -14,10 +14,29 @@ const SocialLogin = () => {
         signInWithGoogle()
             .then(res => {
                 const userInfo = {
+                    uid: res.user?.uid,
                     email: res.user?.email,
                     name: res.user?.displayName,
                     role: 'student',
-                    createAt: new Date().toISOString()
+                    createdAt: new Date().toISOString()
+                }
+                axiosPublic.post('/api/users/add', userInfo)
+                    .then(() => {
+                        toast.success('Successfully logged in!');
+                        navigate(from, { replace: true });
+                    })
+            })
+    }
+
+    const handleGithubLogin = () => {
+        signInWithGithub()
+            .then(res => {
+                const userInfo = {
+                    uid: res.user?.uid,
+                    email: res.user?.email,
+                    name: res.user?.displayName,
+                    role: 'student',
+                    createdAt: new Date().toISOString()
                 }
                 axiosPublic.post('/api/users/add', userInfo)
                     .then(() => {
@@ -32,7 +51,7 @@ const SocialLogin = () => {
             <Button onClick={handleGoogleLogin} bg='#0057e7' color='white' _hover={{}} size='lg' width='full'>
                 Google
             </Button>
-            <Button onClick='handleGithubLogin' bg='#24292e' color='white' _hover={{}} size='lg' width='full'>
+            <Button onClick={handleGithubLogin} bg='#24292e' color='white' _hover={{}} size='lg' width='full'>
                 Github
             </Button>
         </Stack>
