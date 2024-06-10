@@ -1,27 +1,19 @@
-import {Avatar, Box, Button, Divider, Flex, Grid, Heading, Stack, Text, WrapItem} from "@chakra-ui/react";
-import { Rating } from '@smastrom/react-rating';
-import '@smastrom/react-rating/style.css';
-import {RiArticleLine, RiTimeLine, RiUser3Line} from "react-icons/ri";
-import {useQuery} from "@tanstack/react-query";
-import {Link} from "react-router-dom";
-import {axiosPublic} from "../../../hooks/useAxiosPublic.jsx";
+import {Button, Heading, Stack, Text} from "@chakra-ui/react";
+import {useNavigate} from "react-router-dom";
 import ErrorAlert from "../../../components/Shared/ErrorAlert.jsx";
 import Loading from "../../../components/Shared/Loading.jsx";
+import Card from "../../../components/Shared/Card.jsx";
+import useSessions from "../../../hooks/useSessions.jsx";
 
 const SessionSection = () => {
-    const {data: sessions = [], isLoading, error} = useQuery({
-        queryKey: ['sessions'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/api/sessions');
-            return res.data;
-        }
-    });
+    const navigate = useNavigate();
+    const [sessions, isLoading, , error] = useSessions();
+    const filteredSessions = sessions.filter((session) => session.status === "approved");
+    const displayedSessions = filteredSessions.slice(0, 6);
 
     if (isLoading) {
         return <Loading/>;
-    }
-
-    if (error) {
+    } else if (error) {
         return <ErrorAlert error={error}/>;
     }
 
@@ -31,49 +23,14 @@ const SessionSection = () => {
                 <Text fontSize='xl' color='blue'>Our Sessions List</Text>
                 <Heading className='font-lexend'>Most Popular Sessions</Heading>
             </Stack>
-            <div className='grid gap-8'>
-                <Grid className="grid-cols-3 gap-8">
-                    {
-                        sessions.map((session) => (
-                            <Box key={session._id} className='shadow rounded-lg'>
-                                <img alt='cover' src={session.image}
-                                     className='rounded-xl'/>
-                                <div className='mt-2'>
-                                    <div className='p-4 space-y-4'>
-                                        <Flex className='items-center gap-2'>
-                                            <Rating style={{maxWidth: 110}} value={session.rating} readOnly />
-                                            <span>({session.rating})</span>
-                                        </Flex>
-                                        <div className='font-bold text-2xl'>
-                                            {session.title}
-                                        </div>
-                                        <Flex spacing={4} direction='row' align='center' className='gap-4 *:flex *:items-center *:gap-2'>
-                                            <div><RiUser3Line /> 0 Students</div>
-                                            <div><RiArticleLine /> 15 Lessons</div>
-                                            <div><RiTimeLine /> {session.sessionDuration}</div>
-                                        </Flex>
-                                    </div>
-                                    <Divider />
-                                    <Flex className='justify-between p-4 py-2'>
-                                        <Flex className='items-center gap-2'>
-                                            <WrapItem>
-                                                <Avatar size='sm' name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
-                                            </WrapItem>
-                                            <Text>{session.tutor}</Text>
-                                        </Flex>
-                                        <Link to={`/session/${session._id}`}>
-                                            <Button>Read More</Button>
-                                        </Link>
-                                    </Flex>
-                                </div>
-                            </Box>
-                        ))
-                    }
-                </Grid>
-                <Link to='sessions' className='text-center'>
-                    <Button>See All Sessions</Button>
-                </Link>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                {displayedSessions.map((session) => <Card key={session._id} session={session}/>)}
             </div>
+            { filteredSessions.length > 6 && (
+                <div className='mt-6 text-center'>
+                    <Button onClick={() => navigate('/sessions')} size='lg'>See All Sessions</Button>
+                </div>
+            )}
         </section>
     );
 };

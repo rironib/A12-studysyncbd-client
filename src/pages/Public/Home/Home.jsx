@@ -3,7 +3,6 @@ import Banner from "./Banner.jsx";
 import TutorSection from "./TutorSection.jsx";
 import SessionSection from "./SessionSection.jsx";
 import BrandSection from "./BrandSection.jsx";
-import StudentReview from "./StudentReview.jsx";
 
 const Home = () => {
     return (
@@ -15,9 +14,8 @@ const Home = () => {
                 <Banner/>
                 <main className='w-11/12 lg:w-10/12 max-w-[1275px] mx-auto'>
                     <SessionSection/>
-                    <TutorSection/>
                     <BrandSection/>
-                    <StudentReview/>
+                    <TutorSection/>
                 </main>
             </>
         </>

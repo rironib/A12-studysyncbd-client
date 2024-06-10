@@ -1,6 +1,28 @@
-import {Stack, Heading, Text, Box, Grid} from "@chakra-ui/react";
+import {Stack, Heading, Text, Avatar} from "@chakra-ui/react";
+import {useQuery} from "@tanstack/react-query";
+import {axiosPublic} from "../../../hooks/useAxiosPublic.jsx";
+import Loading from "../../../components/Shared/Loading.jsx";
+import ErrorAlert from "../../../components/Shared/ErrorAlert.jsx";
+import useUsers from "../../../hooks/useUsers.jsx";
 
 const TutorSection = () => {
+    const [users, isLoading, refetch, error] = useUsers();
+    // const {data: tutors = [], isLoading, error} = useQuery({
+    //     queryKey: ['tutors'],
+    //     queryFn: async () => {
+    //         const res = await axiosPublic.get('/api/tutors');
+    //         return res.data;
+    //     }
+    // });
+
+    const tutors = users.filter((user) => user.role === 'tutor');
+
+    if (isLoading) {
+        return <Loading />;
+    } else if (error) {
+        return <ErrorAlert error={error}/>;
+    }
+
     return (
         <section className='mt-12 mb-20'>
             <Stack mb='10' align='center' spacing={1}>
@@ -8,36 +30,18 @@ const TutorSection = () => {
                 <Heading>Our Expert Instructors</Heading>
             </Stack>
             <div>
-                <Grid className="grid-cols-4 gap-8">
-                    <Box align='center' className='p-8 shadow rounded-lg'>
-                        <img alt='cover' src='https://getmasum.com/themes-wp/edumoon/wp-content/uploads/2024/04/3-2.jpg' className='rounded-full' />
-                        <div className='mt-4 space-y-2'>
-                            <div className='font-bold text-2xl'>Motasim Billah</div>
-                            <Text color='teal'>UI / UX Designer</Text>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {tutors.map((tutor) => (
+                        <div key={tutor._id} className="flex flex-col items-center gap-6 p-8 border rounded-lg">
+                            <Avatar size='2xl' name={tutor.name} src={tutor?.avatar} />
+                            <div className='text-center space-y-2'>
+                                <div className="font-bold text-2xl">{tutor.name}</div>
+                                <div className="font-medium text-lg capitalize">{tutor.role}</div>
+                            </div>
                         </div>
-                    </Box>
-                    <Box align='center' className='p-8 shadow rounded-lg'>
-                        <img alt='cover' src='https://getmasum.com/themes-wp/edumoon/wp-content/uploads/2024/04/3-2.jpg' className='rounded-full' />
-                        <div className='mt-4 space-y-2'>
-                            <div className='font-bold text-2xl'>Motasim Billah</div>
-                            <Text color='teal'>UI / UX Designer</Text>
-                        </div>
-                    </Box>
-                    <Box align='center' className='p-8 shadow rounded-lg'>
-                        <img alt='cover' src='https://getmasum.com/themes-wp/edumoon/wp-content/uploads/2024/04/3-2.jpg' className='rounded-full' />
-                        <div className='mt-4 space-y-2'>
-                            <div className='font-bold text-2xl'>Motasim Billah</div>
-                            <Text color='teal'>UI / UX Designer</Text>
-                        </div>
-                    </Box>
-                    <Box align='center' className='p-8 shadow rounded-lg'>
-                        <img alt='cover' src='https://getmasum.com/themes-wp/edumoon/wp-content/uploads/2024/04/3-2.jpg' className='rounded-full' />
-                        <div className='mt-4 space-y-2'>
-                            <div className='font-bold text-2xl'>Motasim Billah</div>
-                            <Text color='teal'>UI / UX Designer</Text>
-                        </div>
-                    </Box>
-                </Grid>
+                    ))}
+                </div>
+
             </div>
         </section>
     );
