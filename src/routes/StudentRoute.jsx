@@ -17,12 +17,12 @@ const StudentRoute = ({children}) => {
         return <Loading/>;
     }
 
-    if (isTutor) {
-        return <Navigate to='/tutor/dashboard' state={{from: location}} replace />;
-    }
-
     if (isAdmin) {
         return <Navigate to='/admin/dashboard' state={{from: location}} replace />
+    }
+
+    if (isTutor) {
+        return <Navigate to='/tutor/dashboard' state={{from: location}} replace />;
     }
 
     if (user && isStudent) {
