@@ -1,5 +1,4 @@
 import {useQuery} from "@tanstack/react-query";
-import {axiosPublic} from "../../../hooks/useAxiosPublic.jsx";
 import Loading from "../../../components/Shared/Loading.jsx";
 import ErrorAlert from "../../../components/Shared/ErrorAlert.jsx";
 import {Helmet} from "react-helmet-async";
@@ -7,12 +6,14 @@ import { Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/rea
 import ApprovedTable from "./ApprovedTable.jsx";
 import RejectedTable from "./RejectedTable.jsx";
 import PendingTable from "./PendingTable.jsx";
+import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx";
 
 const TutorSessions = () => {
+    const axiosSecure = useAxiosSecure();
     const {data: sessions = [], isLoading, refetch, error} = useQuery({
         queryKey: ['sessions'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/api/sessions');
+            const res = await axiosSecure.get('/api/tutor/sessions');
             return res.data;
         }
     });
