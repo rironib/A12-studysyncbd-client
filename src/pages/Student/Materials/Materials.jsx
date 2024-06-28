@@ -1,7 +1,7 @@
 import {Helmet} from "react-helmet-async";
 import {Alert, AlertIcon, Heading, Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
 import moment from "moment";
-import {useLoaderData} from "react-router-dom";
+import {Link, useLoaderData} from "react-router-dom";
 
 const StudentMaterials = () => {
     const materials = useLoaderData();
@@ -22,8 +22,8 @@ const StudentMaterials = () => {
                                         <Th>#</Th>
                                         <Th>Image</Th>
                                         <Th>Title</Th>
+                                        <Th>Link</Th>
                                         <Th>Created</Th>
-                                        <Th>Action</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
@@ -35,6 +35,7 @@ const StudentMaterials = () => {
                                                     <img src={item.image} alt={item.title} className='h-20' />
                                                 </Td>
                                                 <Td>{item.title}</Td>
+                                                <Td><Link to={item.link}>Download</Link></Td>
                                                 <Td>{moment(item.createdAt).format('MMMM D, YYYY')}</Td>
                                             </Tr>
                                         ))
